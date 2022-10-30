@@ -16,7 +16,7 @@
         <v-divider></v-divider>
         
         <v-list nav dense>
-          <v-list-item v-for="item in items" :key="item" :to="item.link">
+          <v-list-item v-for="item in items" :key="item.name" :to="item.link">
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
