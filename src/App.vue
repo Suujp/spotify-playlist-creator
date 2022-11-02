@@ -50,7 +50,7 @@ export default {
         {
           name: '検索',
           icon: 'mdi-magnify',
-          link: ''
+          link: '/search'
         },
         {
           name: 'プレイリスト',
