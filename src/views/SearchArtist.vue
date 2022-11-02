@@ -16,7 +16,7 @@
 
     <v-row>
       <v-col cols="12" v-for="artist in data.artist" :key="artist.mbid">
-        <Card :title="artist.name" :text="artist.disambiguation" :mbid="artist.mbid"></Card>
+        <ArtistCard :title="artist.name" :text="artist.disambiguation" :mbid="artist.mbid"></ArtistCard>
       </v-col>
     </v-row>
 
@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import Card from '../components/Card.vue'
+import ArtistCard from '../components/ArtistCard.vue'
 import axios from 'axios'
 
 export default {
-  name: 'Search',
+  name: 'SearchArtist',
   components: {
-    Card: Card
+    ArtistCard: ArtistCard
   },
   data: function() {
     return {
