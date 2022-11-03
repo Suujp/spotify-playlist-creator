@@ -19,10 +19,7 @@ const routes = [
   },
   {
     path: '/search/:mbid',
-    component: SearchSetlist
-  },
-  {
-    path: '/search/:mbid/:id',
+    name: '',
     component: SearchSetlist
   }
 ]

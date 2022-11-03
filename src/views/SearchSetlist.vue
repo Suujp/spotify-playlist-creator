@@ -2,7 +2,14 @@
   <v-container>
     <v-row>
       <v-col cols="8" v-for="setlist in data.setlist" :key="setlist.id">
-        <SetlistCard :title="setlist.venue.name" :text="setlist.venue.city.name" :mbid="mbid" :id="setlist.id" :date="setlist.eventDate"></SetlistCard>
+        <SetlistCard
+          :artist_name="setlist.artist.name"
+          :title="setlist.venue.name"
+          :text="setlist.venue.city.name"
+          :date="setlist.eventDate"
+        >
+          <Dialog :id="setlist.id"></Dialog>
+        </SetlistCard>
       </v-col>
     </v-row>
 
@@ -16,12 +23,14 @@
 
 <script>
 import SetlistCard from '../components/SetlistCard.vue'
+import Dialog from '../components/Dialog.vue'
 import axios from 'axios'
 
 export default {
   name: 'SearchSetlist',
   components: {
-    SetlistCard: SetlistCard
+    SetlistCard: SetlistCard,
+    Dialog: Dialog
   },
   data: function() {
     return {

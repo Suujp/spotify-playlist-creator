@@ -1,22 +1,18 @@
 <template>
   <v-card tile>
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-text>{{ text }}</v-card-text>
-    <v-card-actions>
-      <v-btn text :to="`/search/${mbid}/${id}`">セットリスト詳細</v-btn>
-      {{ date }}
-    </v-card-actions>
+    <v-card-title>{{ artist_name }} - {{ title }}</v-card-title>
+    <v-card-text>{{ text }} - {{ date }}</v-card-text>
+    <slot></slot>
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'Card',
+  name: 'SetlistCard',
   props: {
+    artist_name: String,
     title: String,
     text: String,
-    mbid: String,
-    id: String,
     date: String
   }
 }

@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Card',
+  name: 'ArtistCard',
   props: {
     title: String,
     text: String,
