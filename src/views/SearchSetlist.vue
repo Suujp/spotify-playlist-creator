@@ -8,7 +8,7 @@
           :text="setlist.venue.city.name"
           :date="setlist.eventDate"
         >
-          <Dialog :id="setlist.id"></Dialog>
+          <Dialog :set="setlist.sets.set"></Dialog>
         </SetlistCard>
       </v-col>
     </v-row>
