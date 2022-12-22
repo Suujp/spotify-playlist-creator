@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app dark color="green darken-1">
+    <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>プレイリスト作成アプリ</v-toolbar-title>
     </v-app-bar>
@@ -55,7 +55,7 @@ export default {
         {
           name: 'プレイリスト',
           icon: 'mdi-play',
-          link: ''
+          link: '/playlist'
         }
       ]
     }

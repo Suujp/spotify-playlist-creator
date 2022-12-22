@@ -1,14 +1,17 @@
 <template>
   <v-container>
+    <v-overlay :value="isLoading">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
     <v-row>
-      <v-col cols="8" v-for="setlist in data.setlist" :key="setlist.id">
+      <v-col cols="12" v-for="setlist in data.setlist" :key="setlist.id">
         <SetlistCard
           :artist_name="setlist.artist.name"
           :title="setlist.venue.name"
           :text="setlist.venue.city.name"
           :date="setlist.eventDate"
         >
-          <Dialog :set="setlist.sets.set"></Dialog>
+          <Dialog :set="setlist.sets.set" :artist_name="setlist.artist.name"></Dialog>
         </SetlistCard>
       </v-col>
     </v-row>
@@ -39,7 +42,8 @@ export default {
       mbid: this.$route.params.mbid,
       page: 1,
       total: 0,
-      isActive: false
+      isActive: false,
+      isLoading: false
     }
   },
   created: function() {
@@ -47,6 +51,7 @@ export default {
   },
   methods: {
     getSetlist: function() {
+      this.isLoading = true
       const url = `/rest/1.0/artist/${encodeURIComponent(this.mbid)}/setlists?p=${encodeURIComponent(this.page)}`
       const config = {
         headers: {
@@ -59,10 +64,12 @@ export default {
         this.data = response.data
         this.total = Math.ceil(this.data.total / this.data.itemsPerPage)
         this.isActive = true
+        this.isLoading = false
         this.toTop()
       })
       .catch((error) => {
         console.error(error)
+        this.isLoading = false
       })
     },
     toTop: function() {

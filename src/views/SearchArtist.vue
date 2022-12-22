@@ -1,7 +1,10 @@
 <template>
   <v-container>
+    <v-overlay :value="isLoading">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
     <v-row>
-      <v-col cols="6">
+      <v-col xl="6" lg="6" md="6" sm="12" cols="12">
         <v-text-field
           label="アーティスト名を入力してください"
           filled
@@ -44,11 +47,13 @@ export default {
       api_key: process.env.VUE_APP_API_KEY,
       page: 1,
       total: 0,
-      isActive: false
+      isActive: false,
+      isLoading: false
     }
   },
   methods: {
     getArtist: function(event) {
+      this.isLoading = true
       if (event.key === 'Enter') {
         this.page = 1
       }
@@ -64,10 +69,13 @@ export default {
         this.data = response.data
         this.total = Math.ceil(this.data.total / this.data.itemsPerPage)
         this.isActive = true
+        this.isLoading = false
         this.toTop()
       })
       .catch((error) => {
         console.error(error)
+        this.isLoading = false
+        alert(error)
       })
     },
     toTop: function() {
